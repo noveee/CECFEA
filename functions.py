@@ -51,6 +51,11 @@ def workbookGrid(sheet: openpyxl.workbook.workbook.Workbook):
     tot_column = sheet.max_column 
     sheetGrid = []
 
+
+    # Nested list comprehension
+    # The first row/list corresponds to the questions
+    # The following rows/list corresponds to the responses
+
     for list in range(tot_row + 1):
         sheetGrid.append([])
         for item in range(tot_column + 1):
@@ -58,6 +63,29 @@ def workbookGrid(sheet: openpyxl.workbook.workbook.Workbook):
             sheetGrid[list].append(sheet.cell(row = list + 1, column = item + 1).value)
 
     return sheetGrid
+
+def getColumnInfo(col: int, ):
+    '''
+    Get all the values from a specific column
+
+    :param col: Column to get values from
+    ''' 
+
+def indexRow(search):
+    '''
+    Get all the values from a specifc row and the information it corresponds to
+
+    :param search: Value used to index a specific row
+    '''
+
+'''
+Project specific functions 
+Indexing based on student ID
+Indexing based on Class Number
+Averging rating values
+Compiling comments into one space
+Outputting into specified format (xlsx, sql, etc)
+'''
 
 path = "TestSheet.xlsx"
 sheet = getWorkbook(path)
