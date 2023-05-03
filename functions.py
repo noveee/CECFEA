@@ -40,7 +40,7 @@ def workbookGrid(sheet: openpyxl.workbook.workbook.Workbook):
     Creates a grid of the current sheet for use
     Using a nested list
 
-    :param sheet: The sheet obj to create a grid for
+    :param sheet: The active sheet obj to create a grid for
     '''
 
 
@@ -64,12 +64,28 @@ def workbookGrid(sheet: openpyxl.workbook.workbook.Workbook):
 
     return sheetGrid
 
-def getColumnInfo(col: int, ):
+def getColumnInfo(sheet: openpyxl.workbook.workbook.Workbook, col: int, ):
     '''
-    Get all the values from a specific column
+    Get all the values from a specific column 
+    And returns a list with those values 
 
-    :param col: Column to get values from
+    :param sheet: The active sheet obj to get info from 
+    :param col: Column to get values from 
     ''' 
+
+    values = []
+
+    for i in range(sheet.max_row):
+        if i == 0:
+            print(f"Column: {sheet.cell(row = 1, column = col).value}")
+            continue
+        
+        print(sheet.cell(row = i + 1, column = col).value)
+        values.append(sheet.cell(row = i + 1, column = col).value)
+
+    return values
+
+
 
 def indexRow(search):
     '''
@@ -89,4 +105,4 @@ Outputting into specified format (xlsx, sql, etc)
 
 path = "TestSheet.xlsx"
 sheet = getWorkbook(path)
-print(workbookGrid(sheet))
+print(getColumnInfo(sheet, 2)) 
