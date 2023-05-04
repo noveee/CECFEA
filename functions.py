@@ -156,6 +156,9 @@ def getAverageForColumn(sheet: openpyxl.workbook.workbook.Workbook, col: int):
     else:
         print("Not an option")
 
+def splitSheet(sheet: openpyxl.workbook.workbook.Workbook):
+    
+
 
 path = "TestSheet.xlsx"
 sheet = getWorkbook(path)
