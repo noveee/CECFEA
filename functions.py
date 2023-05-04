@@ -89,19 +89,15 @@ def getColumnInfo(sheet: openpyxl.workbook.workbook.Workbook, col: int, ):
 
     return values
 
-
-
 def indexRow(sheet: openpyxl.workbook.workbook.Workbook, search):
     '''
     Get all the values from a specifc row and the information it corresponds to
+    To be uodated...
 
     :param sheet: The active sheet obj to get info from 
     :param search: Value used to index a specific row
     '''
-
-
-
-
+    return
 '''
 Project specific functions 
 Indexing based on student ID
@@ -146,6 +142,7 @@ def getAverageForColumn(sheet: openpyxl.workbook.workbook.Workbook, col: int):
             grading_scale.append(0)
 
         all_grades = getColumnInfo(sheet, col)
+        # Use dictionary 
 
         for grade in all_grades:
             # pause on this...
@@ -157,9 +154,8 @@ def getAverageForColumn(sheet: openpyxl.workbook.workbook.Workbook, col: int):
         print("Not an option")
 
 def splitSheet(sheet: openpyxl.workbook.workbook.Workbook):
-    
-
-
-path = "TestSheet.xlsx"
-sheet = getWorkbook(path)
-print(getAverageForColumn(sheet, 2)) 
+    '''
+    Splits sheet into multiple sheets based on criteria
+    To be updated...
+    '''
+    return
