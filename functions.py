@@ -91,12 +91,16 @@ def getColumnInfo(sheet: openpyxl.workbook.workbook.Workbook, col: int, ):
 
 
 
-def indexRow(search):
+def indexRow(sheet: openpyxl.workbook.workbook.Workbook, search):
     '''
     Get all the values from a specifc row and the information it corresponds to
 
+    :param sheet: The active sheet obj to get info from 
     :param search: Value used to index a specific row
     '''
+
+
+
 
 '''
 Project specific functions 
@@ -107,7 +111,7 @@ Compiling comments into one space
 Outputting into specified format (xlsx, sql, etc)
 '''
 
-def getAverage(sheet: openpyxl.workbook.workbook.Workbook, col: int):
+def getAverageForColumn(sheet: openpyxl.workbook.workbook.Workbook, col: int):
     '''
     Returns the average of the values in the given column
 
@@ -119,14 +123,40 @@ def getAverage(sheet: openpyxl.workbook.workbook.Workbook, col: int):
     total = 0
     count = 0
 
-    for item in values:
-        total += item
-        count += 1
+    num_or_letter = int(input("Enter 1 for number based averaging or 2 for letter based averaging: "))
+    
+    # For number based averaging
+    if num_or_letter == 1:
+        for item in values:
+            total += item
+            count += 1
 
-    average = total/count
+        average = total/count
 
-    return average
+        return average
+    
+    # For string based averaging
+    elif num_or_letter == 2:
+        criteria = [input("Enter the grading criteria from the highest rating to the lowest, seperated by space\n(I.E. : Excellent Good Poor): ")]
+        grading_scale = []
+
+        # Filling an empty list for grading
+        # Will compress this algorithm later
+        for grade in criteria:
+            grading_scale.append(0)
+
+        all_grades = getColumnInfo(sheet, col)
+
+        for grade in all_grades:
+            # pause on this...
+        
+            return None
+
+    # If the number given is not an option
+    else:
+        print("Not an option")
+
 
 path = "TestSheet.xlsx"
 sheet = getWorkbook(path)
-print(getAverage(sheet, 2)) 
+print(getAverageForColumn(sheet, 2)) 
