@@ -1,5 +1,16 @@
 Link to work: https://eugenemilestone.atlassian.net/wiki/spaces/CECFEAH/pages/10551300/Critical+Checkpoint+meeting+04+27+23*
 
+### Notice
+To run this program the openpyxl package is needed
+
+On windows cmd line run
+`py -m pip --version`
+To verify if pip is installed
+
+Then run
+`py -m pip install openpyxl`
+To download the needed packages
+
 *To-Do List*
 
 - Index excel sheet by student id
