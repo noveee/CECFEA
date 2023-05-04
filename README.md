@@ -5,11 +5,11 @@ To run this program the openpyxl package is needed
 
 On windows cmd line run
 `py -m pip --version`
-To verify if pip is installed
+to verify if pip is installed
 
 Then run
 `py -m pip install openpyxl`
-To download the needed packages
+to download the needed packages
 
 *To-Do List*
 
