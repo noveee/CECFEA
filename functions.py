@@ -75,11 +75,15 @@ def getColumnInfo(sheet: openpyxl.workbook.workbook.Workbook, col: int, ):
 
     values = []
 
+    # Looping through the column and appending each value after the column name to a list
     for i in range(sheet.max_row):
+
+        # Skips the first iteration and prints the column name
         if i == 0:
             print(f"Column: {sheet.cell(row = 1, column = col).value}")
             continue
         
+        # Prints the current value and appends to list
         print(sheet.cell(row = i + 1, column = col).value)
         values.append(sheet.cell(row = i + 1, column = col).value)
 
@@ -103,6 +107,26 @@ Compiling comments into one space
 Outputting into specified format (xlsx, sql, etc)
 '''
 
+def getAverage(sheet: openpyxl.workbook.workbook.Workbook, col: int):
+    '''
+    Returns the average of the values in the given column
+
+    :param sheet: The active sheet obj to get info from 
+    :param col: Column to calculate the average values from
+    '''
+
+    values = getColumnInfo(sheet, col)
+    total = 0
+    count = 0
+
+    for item in values:
+        total += item
+        count += 1
+
+    average = total/count
+
+    return average
+
 path = "TestSheet.xlsx"
 sheet = getWorkbook(path)
-print(getColumnInfo(sheet, 2)) 
+print(getAverage(sheet, 2)) 
