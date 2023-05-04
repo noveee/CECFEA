@@ -3,12 +3,24 @@ Link to work: https://eugenemilestone.atlassian.net/wiki/spaces/CECFEAH/pages/10
 ### Notice
 To run this program the openpyxl package is needed
 
-On windows cmd line run
+#### On windows 
+
+Run
 `py -m pip --version`
 to verify if pip is installed
 
 Then run
 `py -m pip install openpyxl`
+to download the needed packages
+
+#### On macOS
+
+Run
+`python3 -m pip --version`
+to verify if pip is installed
+
+Then run
+`python3 -m pip install openpyxl` 
 to download the needed packages
 
 *To-Do List*
