@@ -84,20 +84,57 @@ def getColumnInfo(sheet: openpyxl.workbook.workbook.Workbook, col: int, ):
             continue
         
         # Prints the current value and appends to list
-        print(sheet.cell(row = i + 1, column = col).value)
-        values.append(sheet.cell(row = i + 1, column = col).value)
+        # Comment out unless needed
+        #print(sheet.cell(row = i + 1, column = col).value)
+
+        value = sheet.cell(row = i + 1, column = col).value
+        
+        # If you want to make values lowercase
+        # if type(value) == str:
+        #    value = value.lower()
+
+        values.append(value)
 
     return values
 
-def indexRow(sheet: openpyxl.workbook.workbook.Workbook, search):
+def getCorrespondingRows(sheet: openpyxl.workbook.workbook.Workbook, col: int, search_term, ):
     '''
-    Get all the values from a specifc row and the information it corresponds to
-    To be uodated...
+    Iterates through the workbook with the specified search term
+    And returns a list of the row numbers that match that information based on the column given
+
+    Note to self...
+    Merging with corresponding rows using a dictionary to compress the code might not be a bad idea, hmmmm
 
     :param sheet: The active sheet obj to get info from 
-    :param search: Value used to index a specific row
+    :param col: Column number iterate though
+    :param search: Value used when iterating through column to find the match
     '''
-    return
+
+    values = getColumnInfo(sheet, col)
+    matched_rows = []
+
+    # If the search term is a word, this makes everything lowercase for comparion purposes
+    if type(search_term) == str:
+        
+        count = 0
+        search_term = search_term.lower()
+        
+        for value in values:
+            values[count] = value.lower()
+            count += 1
+
+    # Starts at the second row sinces first row is reserved for column names
+    row_num = 1 
+
+    # Iterates through the column list and appends the row number of the matched value
+    for value in values: 
+        if value == search_term:
+            print("Match found")
+            matched_rows.append(row_num)
+        row_num += 1
+
+    return matched_rows
+
 '''
 Project specific functions 
 Indexing based on student ID
@@ -119,7 +156,7 @@ def getAverageForColumn(sheet: openpyxl.workbook.workbook.Workbook, col: int):
     total = 0
     count = 0
 
-    num_or_letter = int(input("Enter 1 for number based averaging or 2 for letter based averaging: "))
+    num_or_letter = int(input("Enter 1 for number based averaging or 2 for letter based averaging (not working now...): "))
     
     # For number based averaging
     if num_or_letter == 1:
@@ -153,9 +190,55 @@ def getAverageForColumn(sheet: openpyxl.workbook.workbook.Workbook, col: int):
     else:
         print("Not an option")
 
+def getMatchedRowValues(sheet: openpyxl.workbook.workbook.Workbook, col: int, search_term):
+    '''
+    Grabs specified column information from each matched row
+    Perfect function for getting the average of a specific class section or comments
+
+    For future me...
+    Use corresponding rows to get the list of matched rows,
+    Iterate through those rows ONLY and go to specified column of those rows
+    Add values of those columns to a list and return it
+
+    :param sheet: The active sheet obj to get info from
+    :param col: Column number iterate though and grab info from
+    :param search: Value used when iterating through column to find the match
+    '''
+
+    rows_checking = getCorrespondingRows(sheet, col, search_term)
+    
+    # Dictionary holding the row and it's corresponding value
+    # The key is the row
+
+    row_values = {} 
+    for row in rows_checking:
+        row_values
+
+        
+
 def splitSheet(sheet: openpyxl.workbook.workbook.Workbook):
     '''
     Splits sheet into multiple sheets based on criteria
     To be updated...
     '''
     return
+
+def outputFile(sheet: openpyxl.workbook.workbook.Workbook, format: str):
+    '''
+    Creates a file of the compiled information in the format given
+    Supports text and spreadsheet files
+
+    :param sheet: The active sheet obj to get info from
+    :param format: Extension of the output file, either "text" for a text file or "spread" for spreadsheet file
+    '''
+
+    match format.lower():
+        case "text":
+            print("Outputting to text file...")
+
+        case "spread":
+            print("Outputting to spreadsheet file...")
+
+        case _:
+            print("Incorrect format given, try again")
+
