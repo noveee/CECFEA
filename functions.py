@@ -1,5 +1,13 @@
 import openpyxl
 
+'''
+Project specific functions 
+
+Convert column letter to number
+Compiling comments into one space
+Outputting into specified format (xlsx, sql, etc)
+'''
+
 def getCorrectPath():
     '''
     Assist the user in getting the right file path
@@ -97,13 +105,13 @@ def getColumnInfo(sheet: openpyxl.workbook.workbook.Workbook, col: int, ):
 
     return values
 
-def getCorrespondingRows(sheet: openpyxl.workbook.workbook.Workbook, col: int, search_term, ):
+def getCorrespondingRows(sheet: openpyxl.workbook.workbook.Workbook, col: int, search_term):
     '''
     Iterates through the workbook with the specified search term
     And returns a list of the row numbers that match that information based on the column given
 
     Note to self...
-    Merging with corresponding rows using a dictionary to compress the code might not be a bad idea, hmmmm
+    Merging with corresponding rows using a dictionary to compress the code might not be a bad idea,
 
     :param sheet: The active sheet obj to get info from 
     :param col: Column number iterate though
@@ -124,7 +132,7 @@ def getCorrespondingRows(sheet: openpyxl.workbook.workbook.Workbook, col: int, s
             count += 1
 
     # Starts at the second row sinces first row is reserved for column names
-    row_num = 1 
+    row_num = 2 
 
     # Iterates through the column list and appends the row number of the matched value
     for value in values: 
@@ -134,15 +142,6 @@ def getCorrespondingRows(sheet: openpyxl.workbook.workbook.Workbook, col: int, s
         row_num += 1
 
     return matched_rows
-
-'''
-Project specific functions 
-Indexing based on student ID
-Indexing based on Class Number
-Averging rating values
-Compiling comments into one space
-Outputting into specified format (xlsx, sql, etc)
-'''
 
 def getAverageForColumn(sheet: openpyxl.workbook.workbook.Workbook, col: int):
     '''
@@ -160,6 +159,13 @@ def getAverageForColumn(sheet: openpyxl.workbook.workbook.Workbook, col: int):
     
     # For number based averaging
     if num_or_letter == 1:
+        num = 0       
+
+        # Confirms that values are ints
+        for value in values:
+            values[num] = int(value)
+            num += 1
+
         for item in values:
             total += item
             count += 1
@@ -168,6 +174,7 @@ def getAverageForColumn(sheet: openpyxl.workbook.workbook.Workbook, col: int):
 
         return average
     
+    # Comment out string based for production testing
     # For string based averaging
     elif num_or_letter == 2:
         criteria = [input("Enter the grading criteria from the highest rating to the lowest, seperated by space\n(I.E. : Excellent Good Poor): ")]
@@ -189,6 +196,12 @@ def getAverageForColumn(sheet: openpyxl.workbook.workbook.Workbook, col: int):
     # If the number given is not an option
     else:
         print("Not an option")
+
+def loopingAverageForColumn(sheet: openpyxl.workbook.workbook.Workbook, col_start: int, col_end: int):
+    '''
+    Return list of each average for the corresponding columns
+    '''
+    return
 
 def getMatchedRowValues(sheet: openpyxl.workbook.workbook.Workbook, col: int, search_term):
     '''
@@ -212,9 +225,9 @@ def getMatchedRowValues(sheet: openpyxl.workbook.workbook.Workbook, col: int, se
 
     row_values = {} 
     for row in rows_checking:
-        row_values
+        row_values 
 
-        
+        return       
 
 def splitSheet(sheet: openpyxl.workbook.workbook.Workbook):
     '''

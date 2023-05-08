@@ -2,6 +2,7 @@ Link to work: https://eugenemilestone.atlassian.net/wiki/spaces/CECFEAH/pages/10
 
 ### Notice
 To run this program the openpyxl package is needed
+Spreadsheets should preferrably be in the same folder as the package unless the absolute path is known
 
 #### On windows 
 
